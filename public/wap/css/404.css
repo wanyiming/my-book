@@ -1,0 +1,15 @@
+body {
+	 background: #ffffff; font-family: "微软雅黑", arial;
+ }
+.box {
+	background: url("/public/wap/image/404_bg.png") no-repeat center; height: 470px; margin-top: 200px;
+}
+.box .right {
+	top: 700px; position: absolute;right: 36%;
+}
+.box span {
+	background: rgb(250, 89, 52); width: 265px; height: 60px; text-align: center; line-height: 60px; font-size: 18px; margin-top: 20px; display: block;
+}
+.box span a {
+	color: rgb(255, 255, 255); text-decoration: none;
+}
