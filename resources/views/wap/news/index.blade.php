@@ -34,9 +34,10 @@
             <div class="row">
                 @foreach($rec_data as $bookKey => $bookValue)
                     <div class="tc mbs col4 @if($bookKey == 2) last @endif" >
-                        <a class="db" href="http://m.5du5.net/book/1191.html"><img class="cover_s" title="{{$bookValue->title}}"  alt="{{$bookValue->title}}" src="{{$bookValue->book_cover}}">
-                            <p class="nw"><span class="nw">{{$bookValue->title}}</span><br></p>
-                            <p class="nw lhs fss">{{$bookValue->author}}</p>
+                        <a class="db" href="{!! to_route('home.book.detaile',['id' => $bookValue['id']]) !!}"  target="_blank" title="点击查看：{!! to_route('home.book.detaile',['id' => $bookValue['id']]) !!}" >
+                            <img class="cover_s" title="{{$bookValue['title']}}"  alt="{{$bookValue['title']}}" src="{{$bookValue['book_cover']}}">
+                            <p class="nw"><span class="nw">{{$bookValue['title']}}</span><br></p>
+                            <p class="nw lhs fss">{{$bookValue['author']}}</p>
                         </a>
                     </div>
                 @endforeach
@@ -48,7 +49,7 @@
         <div class="blockcontent">
             <a href="http://m.5du5.net/top/dayvisit/1.html" class="moretop"><i class="iconfont">&#61034;</i></a>
             <div class="c_row cf">
-                <a class="db cf" href="http://m.5du5.net/book/1192.html">
+                <a class="db cf" target="_blank" title="点击查看：{!! to_route('home.book.detaile',['id' => $upt_data[0]->id]) !!}" href="{!! to_route('home.book.detaile',['id' => $upt_data[0]->id]) !!}">
                     <div class="row_cover">
                         <img class="cover_i" title="{{$upt_data[0]->title}}" alt="{{$upt_data[0]->title}}" src="{{$upt_data[0]->book_cover}}">
                     </div>
@@ -61,7 +62,7 @@
             <ul class="ullist">
                 @foreach($upt_data as $uptKey => $uptValue)
                     @if($uptKey > 0)
-                        <li><a class="db" href="http://m.5du5.net/book/1191.html">{{$uptValue['title']}}</a></li>
+                        <li><a class="db" target="_blank" title="点击查看：{!! to_route('home.book.detaile',['id' => $uptValue['id']]) !!}" href="{!! to_route('home.book.detaile',['id' => $uptValue['id']]) !!}">{{$uptValue['title']}}</a></li>
                     @endif
                 @endforeach
             </ul>

@@ -66,12 +66,12 @@ class Books extends Model
         if (empty($recommendObjectId) || count($recommendObjectId) < $limit) {
             $account = $limit - count($recommendObjectId);
             // 被推荐的
-            $recommendData = self::whereIn('id', $recommendObjectId)->where('status', self::STATUS_ON)->select('id','title','book_cover', 'author')->take($limit)->get();
+            $recommendData = self::whereIn('id', $recommendObjectId)->where('status', self::STATUS_ON)->select('id','title','book_cover', 'author')->take($limit)->get()->toArray();
             // 剩余补上的
-            $trapData = self::where('status', self::STATUS_ON)->orderBy('read_num', 'desc')->select('id','title','book_cover', 'author')->take($account)->get();
-            return array_merge($recommendData, $trapData);
+            $trapData = self::where('status', self::STATUS_ON)->orderBy('read_num', 'desc')->select('id','title','book_cover', 'author')->take($account)->get()->toArray();
+            return array_merge($recommendData ?? [], $trapData ?? []);
         }
-        return self::whereIn('id', $recommendObjectId)->where('status', self::STATUS_ON)->select('id','title','book_cover', 'author')->take($limit)->get();
+        return self::whereIn('id', $recommendObjectId)->where('status', self::STATUS_ON)->select('id','title','book_cover', 'author')->take($limit)->get()->toArray();
     }
 
     /**

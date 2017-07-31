@@ -9,7 +9,8 @@
 
 Route::group(['namespace' => 'Home'], function () {
 
-    Route::get('/',"IndexController@index");// 建材商城主页
+    Route::get('/',"IndexController@index")->name('home.wap.index');// 网站首页
+    Route::get('/book/{id}.html', "BookController@index")->name('home.book.detaile');
 
     // 用户注册
     Route::get('register','RegisterController@index')->name('register');//注册页面
