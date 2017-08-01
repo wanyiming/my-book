@@ -13,7 +13,7 @@ try{
 
 var bookindex = -1; //当前的书是不是已经存在
 for(var i = 0; i < bookary.length; i++){
-    if(bookary[i].articleid == articleid){
+    if(bookary[i].articleid == book_id){
         bookindex = i;
         break;
     }
@@ -24,7 +24,7 @@ if(bookindex < 0){
     if(bookary.length >= hisbookmax){
         bookary.shift();
     }
-    bookary.push({articleid:articleid, articlename:articlename, chapterid:chapterid, chaptername:chaptername});
+    bookary.push({articleid:book_id, articlename:articlename, chapterid:chapterid, chaptername:chaptername});
     hiscookievalue = JSON.stringify(bookary);
     Storage.set(hiscookiename, hiscookievalue);
 }else if(chapterid > 0){

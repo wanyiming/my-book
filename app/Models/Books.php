@@ -89,6 +89,9 @@ class Books extends Model
         })->select('id','title','author','book_type', 'book_type', 'book_cover', 'type_id', 'profiles')->orderBy($orderFiled, 'desc')->take($limit)->get();
     }
 
+
+
+
     /**
      * 推荐的票
      * @param $id
@@ -100,5 +103,12 @@ class Books extends Model
             return false;
         }
         self::where('id', intval($id))->increment('read_num');
+    }
+
+    public function getBookInfo ($bookId) {
+        if (empty($bookId)) {
+            return [];
+        }
+        return Books::where('id', intval($bookId))->where('status', Books::STATUS_ON)->first()->toArray();
     }
 }

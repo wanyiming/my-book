@@ -70,6 +70,22 @@ class BookChapter extends Model
         return self::where('book_uuid', $bookUuid)->orderBy($orderFild, $orderDesc)->take($limit)->pluck('title', 'id')->toArray();
     }
 
+    /**
+     * 获取上一页或者下一页ID
+     * @param $bookUuid
+     * @param $bookId
+     * @param $chapterId
+     * @param bool $first
+     * @return string
+     */
+    public function getPage ($bookUuid, $bookId, $chapterId, $first = true) {
+        $chapterId = self::where('book_uuid', $bookUuid)->where('id', ($first ? '<' : '>'), $chapterId)->orderBy('id', ($first ? 'desc' : 'asc'))->value('id') ?? '';
+        if (empty($chapterId)) {
+            return to_route('home.book.detaile', ['id' => $bookId]);
+        }
+        return to_route('home.chapter.detaile', ['bookid' => $bookId, 'chapterid' => $chapterId]);
+    }
+
 
     public function setReadingNum ($id) {
         if (empty($id)) {

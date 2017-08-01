@@ -73,7 +73,7 @@
                                 <li><a href="{!! to_route('home.chapter.detaile',['bookid'=>$bookinfo['id'],'chapterid'=>$newKey]) !!}"> {{$newValue}} </a></li>
                             @endforeach
                         </ul>
-                        <a href="http://m.5du5.net/1191/chapter_desc/1.html" class="more">显示全部章节<i class="iconfont">&#61034;</i></a>
+                        <a href="{!! to_route('home.chapter.lists',['bookid'=>$bookinfo['id'], 'order' => 'desc', 'page' => 1]) !!}" class="more">显示全部章节<i class="iconfont">&#61034;</i></a>
                     </div>
                     <div style="display:none;">
                         <ul class="ullist">
@@ -81,7 +81,7 @@
                                 <li><a href="{!! to_route('home.chapter.detaile',['bookid'=>$bookinfo['id'],'chapterid'=>$firstKey]) !!}"> {{$firstValue}} </a></li>
                             @endforeach
                         </ul>
-                        <a href="http://m.5du5.net/1191/chapter_asc/1.html" class="more">显示全部章节<i class="iconfont">&#61034;</i></a>
+                        <a href="{!! to_route('home.chapter.lists',['bookid'=>$bookinfo['id'], 'order' => 'asc', 'page' => 1]) !!}" class="more">显示全部章节<i class="iconfont">&#61034;</i></a>
                     </div>
                 </div>
             </div>

@@ -20,7 +20,7 @@ class BookController extends Controller
             return redirect()->to(to_route('home.wap.index'));
         }
         // 书本详情
-        $bookInfo = Books::where('id', intval($bookId))->where('status', Books::STATUS_ON)->first()->toArray();
+        $bookInfo =(new Books())->getBookInfo($bookId);
         if (empty($bookInfo)) {
             return abort(404);
         } else {

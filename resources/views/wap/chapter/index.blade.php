@@ -5,15 +5,16 @@
 @endsection
 @section('scripts')
     <script type="text/javascript">
-        var url_previous = "/book/1191/4003418/";
-        var url_next = "/book/1191/4006421/";
-        var url_index = "/1191/chapter_asc/1.html";
-        var url_articleinfo = "/book/1191.html";
-        var url_home = "/";
-        var articleid = "1191";
-        var articlename = "邪王追妻：废材逆天小姐";
-        var chapterid = "4006420";
-        var chaptername = " 第9469章 南宫流云1";
+        var url_previous = '{!! $url_previous !!}';
+        var url_next = '{!! $url_next !!}';
+        var url_first = '{!! $url_first !!}';
+        var url_index = ''; // 目录地址
+        var url_book_info = "{!! to_route('home.book.detaile', ['id' => $bookinfo['id']]) !!}"; // 书本详情地址
+        var url_home = "/"; // 首页
+        var book_id = "{{$bookinfo['id']}}"; // 书本ID
+        var book_name = "{{$bookinfo['title']}}"; // 书本名
+        var chapterid = "{{$chapter['id']}}"; // 章节id
+        var chaptername = " {{$chapter['title']}}"; // 章节名
         var userid = "4003418";
         var egoldname = "4006421";
     </script>

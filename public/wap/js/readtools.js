@@ -128,7 +128,7 @@ var ReadTools = {
     },
     AddBookcase: function () {
         if (jieqiUserInfo.jieqiUserId) {
-            Ajax.Request('/modules/article/addbookcase.php?bid=' + articleid + '&cid=' + chapterid, {
+            Ajax.Request('/modules/article/addbookcase.php?bid=' + book_id + '&cid=' + chapterid, {
                 method: 'POST',
                 onComplete: function () {
                     ReadTools.ShowTip(this.response);
@@ -141,7 +141,7 @@ var ReadTools = {
     },
     UserVote: function () {
         if (jieqiUserInfo.jieqiUserId) {
-            Ajax.Request('/modules/article/uservote.php?id=' + articleid, {
+            Ajax.Request('/modules/article/uservote.php?id=' + book_id, {
                 method: 'POST', onComplete: function () {
                     ReadTools.ShowTip(this.response);
                 }
@@ -155,7 +155,7 @@ var ReadTools = {
         if (jieqiUserInfo.jieqiUserId) {
             Ajax.Request('/modules/article/tip.php', {
                 method: 'POST',
-                parameters: 'act=post&id=' + articleid + '&payegold=' + parseInt(egold) + '&jieqi_token=' + jieqiUserInfo.jieqiUserToken,
+                parameters: 'act=post&id=' + book_id + '&payegold=' + parseInt(egold) + '&jieqi_token=' + jieqiUserInfo.jieqiUserToken,
                 onComplete: function () {
                     ReadTools.ShowTip(this.response);
                 }
@@ -180,9 +180,9 @@ var ReadTools = {
 
         output += '<div id="bottomtools" class="bottomtools cf" style="display:' + isdisplay + ';">\
 		<ul>\
-	<li onclick="window.location.href = url_previous;"><p class="iconfont f_l">&#xee68;</p><p>上一章</p></li>\
+	<li onclick="window.location.href = url_first;"><p class="iconfont f_l">&#xee68;</p><p>上一章</p></li>\
 	<li onclick="window.location.href = url_index;"><p class="iconfont f_l">&#xee32;</p><p>目录</p></li>\
-	<li onclick="window.location.href = url_articleinfo;"><p class="iconfont f_l">&#xee50;</p><p>详情</p></li>\
+	<li onclick="window.location.href = url_book_info;"><p class="iconfont f_l">&#xee50;</p><p>详情</p></li>\
 	<li onclick="window.location.href = url_next;"><p class="iconfont f_l">&#xee67;</p><p>下一章</p></li>\
 	</ul>\
 </div>';
@@ -205,7 +205,7 @@ var ReadTools = {
         }
         output += '    </ul>\
         </div>';
-        output += '<div id="addreview" class="addreview" style="display:none;"><form name="frmreview" id="frmreview" method="post" action="/modules/article/reviews.php?aid=' + articleid + '">\
+        output += '<div id="addreview" class="addreview" style="display:none;"><form name="frmreview" id="frmreview" method="post" action="/modules/article/reviews.php?aid=' + book_id + '">\
 <div><textarea class="textarea" name="pcontent" id="pcontent" style="font-family:Verdana;font-size:100%;width:94%;height:4.5em;margin:0 auto 0.3em auto;"></textarea></div>';
         if (jieqiUserInfo.jieqiCodePost) output += '<div style="margin-bottom: 0.3em;text-align: left;text-indent: 3%;">验证码：<input type="text" class="text" size="8" maxlength="8" name="checkcode" onfocus="if($_(\'p_imgccode\').style.display == \'none\'){$_(\'p_imgccode\').src = \'/checkcode.php\';$_(\'p_imgccode\').style.display = \'\';}" title="点击显示验证码"><img id="p_imgccode" src="" style="cursor:pointer;vertical-align:middle;margin-left:3px;display:none;" onclick="this.src=\'/checkcode.php?rand=\'+Math.random();" title="点击刷新验证码"></div>';
         output += '<input type="button" name="Submit" class="button" value="发表评论" style="cursor:pointer;" onclick="Ajax.Request(\'frmreview\',{onComplete:function(){ReadTools.ShowTip(this.response);}});">\
