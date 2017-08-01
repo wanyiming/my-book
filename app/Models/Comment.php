@@ -74,4 +74,16 @@ class Comment extends Model
         }
         return $lists;
     }
+
+    /**
+     * @param $bookUuid
+     * @param int $limit
+     * @return array
+     */
+    public function bookComment ($bookUuid, $limit = 8) {
+        if (empty($bookUuid)) {
+            return [];
+        }
+        return Comment::where('book_uuid', $bookUuid)->where('status', self::STATUS_NO)->take($limit)->select('id','name','content', 'create_time')->get()->toArray();
+    }
 }

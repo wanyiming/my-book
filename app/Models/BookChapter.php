@@ -50,4 +50,31 @@ class BookChapter extends Model
         }
         return response_error('保存失败');
     }
+
+    /**
+     * @param $bookUuid
+     * @param string $orderFild
+     * @param string $orderDesc
+     * @param $limit
+     * @return array
+     */
+    public function getBookChapter ($bookUuid, $orderFild = 'id', $orderDesc = 'desc' ,$limit = 10) {
+        if (empty($bookUuid)) {
+            return [];
+        }
+        $hasBook = (bool)Books::where('uuid', $bookUuid)->where('status', Books::STATUS_ON)->exists();
+        if ($hasBook === false) {
+            \Log::warning(sprintf('书本信息不存在，uuid:%s', $bookUuid));
+            return [];
+        }
+        return self::where('book_uuid', $bookUuid)->orderBy($orderFild, $orderDesc)->take($limit)->pluck('title', 'id')->toArray();
+    }
+
+
+    public function setReadingNum ($id) {
+        if (empty($id)) {
+            return false;
+        }
+        self::where('id', intval($id))->increment('reading_num');
+    }
 }

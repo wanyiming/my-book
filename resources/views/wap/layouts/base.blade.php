@@ -17,7 +17,9 @@
 </head>
 <body>
 @yield('content')
+@if(empty($hasFooter))
 @include('wap.layouts.footer')
+@endif
 <script type="text/javascript" src="{!! asset('/wap/js/hm.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('/wap/js/common.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('/wap/js/theme.js') !!}"></script>

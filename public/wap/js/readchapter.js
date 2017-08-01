@@ -1,46 +1,46 @@
-var hiscookiename = 'jieqiHistoryBooks'; //cookieÃû×Ö
-var hiscookievalue = Storage.get(hiscookiename); //È¡cookie
+var hiscookiename = 'jieqiHistoryBooks'; //cookieåå­—
+var hiscookievalue = Storage.get(hiscookiename); //å–cookie
 
-//°Ñcookie½âÎö³ÉÔÄ¶Á¼ÇÂ¼Êý×é£¬ÐèÒª¼ÓÔØ /scripts/json2.js
+//æŠŠcookieè§£æžæˆé˜…è¯»è®°å½•æ•°ç»„ï¼Œéœ€è¦åŠ è½½ /scripts/json2.js
 var bookary = [];
 try{
-	bookary = JSON.parse(hiscookievalue);
-	if(!bookary) bookary = [];
+    bookary = JSON.parse(hiscookievalue);
+    if(!bookary) bookary = [];
 }catch(e){
 }
 
-//Èç¹ûÓÐ¼ÇÂ¼×î½üÔÄ¶ÁÕÂ½Ú¾ÍÌø×ªµ½¶ÔÓ¦ÕÂ½Ú£¬·ñÔòÏÔÊ¾µÚÒ»ÕÂ
+//å¦‚æžœæœ‰è®°å½•æœ€è¿‘é˜…è¯»ç« èŠ‚å°±è·³è½¬åˆ°å¯¹åº”ç« èŠ‚ï¼Œå¦åˆ™æ˜¾ç¤ºç¬¬ä¸€ç« 
 function read_chapter(aid){
-	var cid = 0;
-	if(bookary.length > 0){
-		for(var i = bookary.length - 1; i >= 0; i--){
-			if(bookary[i].articleid == aid){
-				if(bookary[i].chapterid > 0) cid = bookary[i].chapterid;
-				break;
-			}
-		}
-	}
-	if(cid > 0){
-		//window.location.href = "/modules/article/reader.php?aid="+aid+"&cid="+cid;
-		window.location.href = "/book/"+aid+"/"+cid+"/";
-	}else{
-		window.location.href = "/modules/article/firstchapter.php?aid="+aid;
-	}
+    var cid = 0;
+    if(bookary.length > 0){
+        for(var i = bookary.length - 1; i >= 0; i--){
+            if(bookary[i].articleid == aid){
+                if(bookary[i].chapterid > 0) cid = bookary[i].chapterid;
+                break;
+            }
+        }
+    }
+    if(cid > 0){
+        //window.location.href = "/modules/article/reader.php?aid="+aid+"&cid="+cid;
+        window.location.href = "/book/"+aid+"/"+cid+"/";
+    }else{
+        window.location.href = "/modules/article/firstchapter.php?aid="+aid;
+    }
 }
 
-//Õë¶ÔÊé¼ÜµÄ¼ÌÐøÔÄ¶Á
+//é’ˆå¯¹ä¹¦æž¶çš„ç»§ç»­é˜…è¯»
 function read_bookcase(aid, cid, bid){
-	if(bookary.length > 0){
-		for(var i = bookary.length - 1; i >= 0; i--){
-			if(bookary[i].articleid == aid){
-				if(bookary[i].chapterid > 0) cid = bookary[i].chapterid;
-				break;
-			}
-		}
-	}
-	if(cid > 0){
-		window.location.href = "/modules/article/readbookcase.php?bid="+bid+"&aid="+aid+"&cid="+cid;
-	}else{
-		window.location.href = "/modules/article/firstchapter.php?aid="+aid;
-	}
+    if(bookary.length > 0){
+        for(var i = bookary.length - 1; i >= 0; i--){
+            if(bookary[i].articleid == aid){
+                if(bookary[i].chapterid > 0) cid = bookary[i].chapterid;
+                break;
+            }
+        }
+    }
+    if(cid > 0){
+        window.location.href = "/modules/article/readbookcase.php?bid="+bid+"&aid="+aid+"&cid="+cid;
+    }else{
+        window.location.href = "/modules/article/firstchapter.php?aid="+aid;
+    }
 }

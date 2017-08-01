@@ -1,64 +1,64 @@
-//´Ócookie»ñÈ¡ÓÃ»§µÇÂ¼ĞÅÏ¢
-var jieqiUserInfo = new  Array(); //ÓÃ»§ĞÅÏ¢Êı×é
-jieqiUserInfo['jieqiUserId'] = 0; //ÓÃ»§ID
-jieqiUserInfo['jieqiUserUname'] = ''; //ÓÃ»§ÕËºÅ
-jieqiUserInfo['jieqiUserUname_un'] = ''; //UNICODE±àÂëµÄÓÃ»§ÕËºÅ
-jieqiUserInfo['jieqiUserName'] = ''; //ÓÃ»§Ãû£¨êÇ³Æ£©
-jieqiUserInfo['jieqiUserName_un'] = ''; //UNICODE±àÂëµÄÓÃ»§Ãû£¨êÇ³Æ£©
-jieqiUserInfo['jieqiUserGroup'] = 0; //ÓÃ»§×éID
-jieqiUserInfo['jieqiUserGroupName'] = ''; //ÓÃ»§×é
-jieqiUserInfo['jieqiUserGroupName_un'] = ''; //UNICODE±àÂëµÄÓÃ»§×é
-jieqiUserInfo['jieqiUserVip'] = 0; //VIPµÈ¼¶ 
-jieqiUserInfo['jieqiUserHonorId'] = 0; //Í·ÏÎID
-jieqiUserInfo['jieqiUserHonor'] = ''; //Í·ÏÎ
-jieqiUserInfo['jieqiUserHonor_un'] = ''; //UNICODE±àÂëµÄÍ·ÏÎ
-jieqiUserInfo['jieqiNewMessage'] = 0; //ĞÂÏûÏ¢ÊıÁ¿£¬Ä¬ÈÏ 0 
-jieqiUserInfo['jieqiUserPassword'] = ''; //ÓÃ»§ÃÜÂë£¨MD5ºóµÄÖµ£©
+//ä»cookieè·å–ç”¨æˆ·ç™»å½•ä¿¡æ¯
+var jieqiUserInfo = new  Array(); //ç”¨æˆ·ä¿¡æ¯æ•°ç»„
+jieqiUserInfo['jieqiUserId'] = 0; //ç”¨æˆ·ID
+jieqiUserInfo['jieqiUserUname'] = ''; //ç”¨æˆ·è´¦å·
+jieqiUserInfo['jieqiUserUname_un'] = ''; //UNICODEç¼–ç çš„ç”¨æˆ·è´¦å·
+jieqiUserInfo['jieqiUserName'] = ''; //ç”¨æˆ·åï¼ˆæ˜µç§°ï¼‰
+jieqiUserInfo['jieqiUserName_un'] = ''; //UNICODEç¼–ç çš„ç”¨æˆ·åï¼ˆæ˜µç§°ï¼‰
+jieqiUserInfo['jieqiUserGroup'] = 0; //ç”¨æˆ·ç»„ID
+jieqiUserInfo['jieqiUserGroupName'] = ''; //ç”¨æˆ·ç»„
+jieqiUserInfo['jieqiUserGroupName_un'] = ''; //UNICODEç¼–ç çš„ç”¨æˆ·ç»„
+jieqiUserInfo['jieqiUserVip'] = 0; //VIPç­‰çº§
+jieqiUserInfo['jieqiUserHonorId'] = 0; //å¤´è¡”ID
+jieqiUserInfo['jieqiUserHonor'] = ''; //å¤´è¡”
+jieqiUserInfo['jieqiUserHonor_un'] = ''; //UNICODEç¼–ç çš„å¤´è¡”
+jieqiUserInfo['jieqiNewMessage'] = 0; //æ–°æ¶ˆæ¯æ•°é‡ï¼Œé»˜è®¤ 0
+jieqiUserInfo['jieqiUserPassword'] = ''; //ç”¨æˆ·å¯†ç ï¼ˆMD5åçš„å€¼ï¼‰
 
-//¶ÁÈ¡COOKIE£¬½âÎöºó¸³Öµµ½Êı×é
+//è¯»å–COOKIEï¼Œè§£æåèµ‹å€¼åˆ°æ•°ç»„
 if(document.cookie.indexOf('jieqiUserInfo') >= 0){
-	var cookieInfo = get_cookie_value('jieqiUserInfo');
-	start = 0;
-	offset = cookieInfo.indexOf(',', start); 
-	while(offset > 0){
-		tmpval = cookieInfo.substring(start, offset);
-		tmpidx = tmpval.indexOf('=');
-		if(tmpidx > 0){
-           tmpname = tmpval.substring(0, tmpidx);
-		   tmpval = tmpval.substring(tmpidx+1, tmpval.length);
-		   jieqiUserInfo[tmpname] = tmpval;
-		}
-		start = offset+1;
-		if(offset < cookieInfo.length){
-		  offset = cookieInfo.indexOf(',', start); 
-		  if(offset == -1) offset =  cookieInfo.length;
-		}else{
-          offset = -1;
-		}
-	}
+    var cookieInfo = get_cookie_value('jieqiUserInfo');
+    start = 0;
+    offset = cookieInfo.indexOf(',', start);
+    while(offset > 0){
+        tmpval = cookieInfo.substring(start, offset);
+        tmpidx = tmpval.indexOf('=');
+        if(tmpidx > 0){
+            tmpname = tmpval.substring(0, tmpidx);
+            tmpval = tmpval.substring(tmpidx+1, tmpval.length);
+            jieqiUserInfo[tmpname] = tmpval;
+        }
+        start = offset+1;
+        if(offset < cookieInfo.length){
+            offset = cookieInfo.indexOf(',', start);
+            if(offset == -1) offset =  cookieInfo.length;
+        }else{
+            offset = -1;
+        }
+    }
 }
 
-//¶ÁÈ¡COOKIEº¯Êı
+//è¯»å–COOKIEå‡½æ•°
 function get_cookie_value(Name) {
-	var search = Name + "=";
-	var returnvalue = ""; 
-	if (document.cookie.length > 0) {
-		offset = document.cookie.indexOf(search);
-		if (offset != -1) {
-			offset += search.length;
-			end = document.cookie.indexOf(";", offset);
-			if (end == -1) end = document.cookie.length;
-			returnvalue = unescape(document.cookie.substring(offset, end));
-		}
-	}
-	return returnvalue; 
+    var search = Name + "=";
+    var returnvalue = "";
+    if (document.cookie.length > 0) {
+        offset = document.cookie.indexOf(search);
+        if (offset != -1) {
+            offset += search.length;
+            end = document.cookie.indexOf(";", offset);
+            if (end == -1) end = document.cookie.length;
+            returnvalue = unescape(document.cookie.substring(offset, end));
+        }
+    }
+    return returnvalue;
 }
 
-//×Ô¶¨Òå´¦Àí´úÂë
+//è‡ªå®šä¹‰å¤„ç†ä»£ç 
 /*
-if(jieqiUserInfo['jieqiUserId'] > 0 && document.cookie.indexOf('PHPSESSID') != -1){
-	document.write('ÒÑ¾­µÇÂ¼');
-}else{
-	document.write('»¹Î´µÇÂ¼');
-}
-*/
+ if(jieqiUserInfo['jieqiUserId'] > 0 && document.cookie.indexOf('PHPSESSID') != -1){
+ document.write('å·²ç»ç™»å½•');
+ }else{
+ document.write('è¿˜æœªç™»å½•');
+ }
+ */

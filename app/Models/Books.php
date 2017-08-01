@@ -88,4 +88,17 @@ class Books extends Model
             }
         })->select('id','title','author','book_type', 'book_type', 'book_cover', 'type_id', 'profiles')->orderBy($orderFiled, 'desc')->take($limit)->get();
     }
+
+    /**
+     * 推荐的票
+     * @param $id
+     * @param string $filed
+     * @return bool
+     */
+    public function setReadingNum ($id, $filed = 'read_num') {
+        if (empty($id)) {
+            return false;
+        }
+        self::where('id', intval($id))->increment('read_num');
+    }
 }

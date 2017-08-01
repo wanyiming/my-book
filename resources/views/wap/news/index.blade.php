@@ -55,7 +55,7 @@
                     </div>
                     <div class="row_text">
                         <h4>{{$upt_data[0]->title}}</h4>
-                        <p class="gray fss">{!! (new \App\Models\BookType())->getTypeName($upt_data[0]->book_type)!!} | {{$upt_data[0]->author}}<br> {{$upt_data[0]->profiles}}</p>
+                        <p class="gray fss">{!! (new \App\Models\BookType())->getTypeName($upt_data[0]->book_type)!!} | {{$upt_data[0]->author}}<br> {{ msubstr($upt_data[0]->profiles,0,80)}}</p>
                     </div>
                 </a>
             </div>

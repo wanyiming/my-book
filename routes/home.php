@@ -10,7 +10,8 @@
 Route::group(['namespace' => 'Home'], function () {
 
     Route::get('/',"IndexController@index")->name('home.wap.index');// 网站首页
-    Route::get('/book/{id}.html', "BookController@index")->name('home.book.detaile');
+    Route::get('/book/{id}.html', "BookController@index")->name('home.book.detaile'); // 书本主页
+    Route::get('/book/{bookid}/{chapterid}.html', 'ChapterController@info')->where('bookid','\d{1,10}')->where('chapterid','\d{1,10}')->name('home.chapter.detaile'); // 章节详情
 
     // 用户注册
     Route::get('register','RegisterController@index')->name('register');//注册页面
