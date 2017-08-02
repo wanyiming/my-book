@@ -24,7 +24,7 @@ if(bookindex < 0){
     if(bookary.length >= hisbookmax){
         bookary.shift();
     }
-    bookary.push({articleid:book_id, articlename:articlename, chapterid:chapterid, chaptername:chaptername});
+    bookary.push({articleid:book_id, articlename:book_name, chapterid:chapterid, chaptername:chaptername});
     hiscookievalue = JSON.stringify(bookary);
     Storage.set(hiscookiename, hiscookievalue);
 }else if(chapterid > 0){

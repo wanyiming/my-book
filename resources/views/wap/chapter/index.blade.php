@@ -8,7 +8,7 @@
         var url_previous = '{!! $url_previous !!}';
         var url_next = '{!! $url_next !!}';
         var url_first = '{!! $url_first !!}';
-        var url_index = ''; // 目录地址
+        var url_index = '{!! to_route('home.chapter.lists',['bookid'=>$bookinfo['id'],'order'=>'desc','chapterid'=>$chapter['id']]) !!}'; // 目录地址
         var url_book_info = "{!! to_route('home.book.detaile', ['id' => $bookinfo['id']]) !!}"; // 书本详情地址
         var url_home = "/"; // 首页
         var book_id = "{{$bookinfo['id']}}"; // 书本ID

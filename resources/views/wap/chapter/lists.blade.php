@@ -3,10 +3,38 @@
     <link rel="stylesheet" href="{!! asset('/wap/css/page.css') !!}" type="text/css" media="all">
 @endsection
 @section('scripts')
+    <script>
+        var previousPage = {!! $page !!};
+        $(function () {
+            $("input[name='page']").keydown(function (event) {
+                if (event.keyCode == 13) {
+                    var page = $(this).val();
+                    if (!isNaN(page) && page > 0) {
+                        location.href = location.href.replace(previousPage+".html", page +'.html');
+                    }
+                }
+            }).focus(function () {
+            }).blur(function () {
+                var page = $(this).val();
+                if (isNaN(page)) {
+                    $(this).val(1);
+                }
+                if (!page) {
+                    $(this).val(1);
+                }
+            });
+            $(".goTo").click(function () {
+                var page = $("input[name='page']").val();
+                if (!isNaN(page) && page > 0) {
+                    location.href = location.href.replace(previousPage+".html", page +'.html');
+                }
+            })
+        })
+    </script>
 @endsection
 @section('content')
     <div class="pagetitle cf">
-        <a href="http://m.5du5.net/book/1191.html"><i class="iconfont fl">&#61033;</i></a>
+        <a href="javascript:history.back(-1)"><i class="iconfont fl">&#61033;</i></a>
         <a class="fr" href="{!! to_route('home.chapter.lists',['bookid' => $bookinfo['id'], 'order' => ($orderFiled == 'desc' ? 'asc' : 'desc'), 'page' => 1]) !!}">{{$orderName}}&nbsp;</a>
         作品目录
     </div>
@@ -25,34 +53,34 @@
         <dl class="index" id="jieqi_page_contents">
             <div class="pages">
                 <div class="pagelink cf" id="pagelink">
-                    <a href="http://m.5du5.net/1191/chapter_asc/1.html#" class="prev">上一页</a>
+                    <a href="{!! $url_prev !!}" class="prev">上一页</a>
                     <em id="pagestats">
                         <kbd>
-                            <input name="page" type="text" size="3" value="1" onkeydown="if(event.keyCode==13){window.location.href='/1191/chapter_asc/<{$page}>.html'.replace('<{$page|subdirectory}>', '/' + Math.floor(this.parentNode.getElementsByTagName('input')[0].value / 1000)).replace('<{$page}>', this.parentNode.getElementsByTagName('input')[0].value); return false;}" onfocus="if(this.value==this.getAttribute('dftval'))this.value='';" onblur="if(this.value=='')this.value=this.getAttribute('dftval');" dftval="1">
+                            <input name="page" type="text" size="3" value="{!! $page !!}">
                         </kbd>
                         /{{$total}}
-                        <a href="javascript:;" onclick="window.location.href='/1191/chapter_asc/<{$page}>.html'.replace('<{$page|subdirectory}>', '/' + Math.floor(this.parentNode.getElementsByTagName('input')[0].value / 1000)).replace('<{$page}>', this.parentNode.getElementsByTagName('input')[0].value);">GO</a>
+                        <a href="javascript:;" class="goTo">GO</a>
                     </em>
-                    <a href="http://m.5du5.net/1191/chapter_asc/2.html" class="next">下一页</a>
+                    <a href="{!! $url_next !!}" class="next">下一页</a>
                 </div>
             </div>
             @foreach($chapterList as $key=>$value)
                 <dd>
-                    <a class="db" href="{!! to_route('home.chapter.detaile', ['bookid' => $bookinfo['id'], 'chapterid' => $key]) !!}" title="2014-06-16 20:31更新，共1385字">{{$value}}</a>
+                    <a class="db" href="{!! to_route('home.chapter.detaile', ['bookid' => $bookinfo['id'], 'chapterid' => $key]) !!}" title="{!! $value !!}">{{$value}}</a>
                 </dd>
             @endforeach
         </dl>
         <div class="pages">
             <div class="pagelink cf" id="pagelink">
-                <a href="http://m.5du5.net/1191/chapter_asc/1.html#" class="prev">上一页</a>
+                <a href="{!! $url_prev !!}" class="prev">上一页</a>
                 <em id="pagestats">
                     <kbd>
-                        <input name="page" type="text" size="3" value="1" onkeydown="if(event.keyCode==13){window.location.href='/1191/chapter_asc/<{$page}>.html'.replace('<{$page|subdirectory}>', '/' + Math.floor(this.parentNode.getElementsByTagName('input')[0].value / 1000)).replace('<{$page}>', this.parentNode.getElementsByTagName('input')[0].value); return false;}" onfocus="if(this.value==this.getAttribute('dftval'))this.value='';" onblur="if(this.value=='')this.value=this.getAttribute('dftval');" dftval="1">
+                        <input name="page" type="text" size="3" value="{!! $page !!}">
                     </kbd>
                     /{{$total}}
-                    <a href="javascript:;" onclick="window.location.href='/1191/chapter_asc/<{$page}>.html'.replace('<{$page|subdirectory}>', '/' + Math.floor(this.parentNode.getElementsByTagName('input')[0].value / 1000)).replace('<{$page}>', this.parentNode.getElementsByTagName('input')[0].value);">GO</a>
+                    <a href="javascript:;" class="goTo">GO</a>
                 </em>
-                <a href="http://m.5du5.net/1191/chapter_asc/2.html" class="next">下一页</a>
+                <a href="{!! $url_next !!}" class="next">下一页</a>
             </div>
         </div>
     </div>

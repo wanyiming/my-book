@@ -14,6 +14,8 @@
     <title>{!! SEO::generate() !!}</title>
     @yield('styles')
     <link rel="stylesheet" href="{!! asset('/wap/css/style.css') !!}" type="text/css" media="all">
+    <script src="/assets/js/jquery-1.10.2.min.js"></script>
+    <script src="/assets/js/jquery-ui-1.9.2.custom.min.js"></script>
 </head>
 <body>
 @yield('content')

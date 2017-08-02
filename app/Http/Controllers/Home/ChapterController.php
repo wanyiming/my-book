@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Requests\Request;
 use App\Models\BookChapter;
 use App\Models\Books;
 use App\Http\Controllers\Controller;
@@ -62,13 +63,24 @@ class ChapterController extends Controller
         if ($orderFiled  == 'asc') {
             $orderFiled = 'asc';
         }
-        $chapterData = BookChapter::where('book_uuid', $bookInfo['uuid'])->orderBy('id', $orderFiled)->take($listPage)->pluck('title','id')->toArray();
+        $chapterData = BookChapter::where('book_uuid', $bookInfo['uuid'])->orderBy('id', $orderFiled)->forPage($page, $listPage)->pluck('title','id')->toArray();
+
+        // 总页数
+        $totalCount = ceil(BookChapter::where('book_uuid', $bookInfo['uuid'])->count() / $listPage);
+
+        if ($page > $totalCount) {
+            return redirect()->to(to_route('home.book.detaile',['id' => $bookId]));
+        }
+        $urlPrevious = $_SERVER['REQUEST_URI'];
         $data = [
             'bookinfo' => $bookInfo,
             'chapterList' => $chapterData,
             'orderName' => $orderFiled == 'desc' ? '倒序' : '升序',
             'orderFiled' => $orderFiled,
-            'total' =>  ceil(BookChapter::where('book_uuid', $bookInfo['uuid'])->count() / $listPage)
+            'total' =>  $totalCount,
+            'page' => $page,
+            'url_prev' => $page <= 1 ? to_route('home.chapter.lists',['bookid' => $bookId, 'order' => $orderFiled,'page'=>1]) : str_replace($page.'.html', ($page - 1) . '.html', $urlPrevious),
+            'url_next' => $page >= $totalCount ?  to_route('home.chapter.lists',['bookid' => $bookId, 'order' => $orderFiled,'page'=>$totalCount])  : str_replace($page.'.html', ($page + 1) . '.html', $urlPrevious),
         ];
         return view('wap.chapter.lists', $data);
     }
