@@ -42,7 +42,7 @@
         <ul class="tabb tab3 cf mb">
             <li><a href="{!! to_route('home.book.detaile',['id'=>$bookinfo['id']]) !!}">信息</a></li>
             <li><a href="javascript:void(0);" class="selected">目录</a></li>
-            <li><a href="http://m.5du5.net/modules/article/reviews.php?aid=1191">书评</a></li>
+            <li><a href="{!! to_route('home.chapter.comment',['bookid'=>$bookinfo['id']]) !!}">书评</a></li>
         </ul>
         <div class="atitle">
             {{$bookinfo['title']}}

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Requests\Request;
 use App\Models\BookChapter;
 use App\Models\Books;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
+use Illuminate\Http\Request;
 
 class ChapterController extends Controller
 {
@@ -83,5 +84,28 @@ class ChapterController extends Controller
             'url_next' => $page >= $totalCount ?  to_route('home.chapter.lists',['bookid' => $bookId, 'order' => $orderFiled,'page'=>$totalCount])  : str_replace($page.'.html', ($page + 1) . '.html', $urlPrevious),
         ];
         return view('wap.chapter.lists', $data);
+    }
+
+
+    /**
+     * 评价列表
+     * @param $bookId
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View|void
+     */
+    public function comment ($bookId,Request $request) {
+        if (empty($bookId)) {
+            return redirect()->to(to_route('home.wap.index'));
+        }
+        $bookInfo =  (new Books())->getBookInfo($bookId);
+        if (empty($bookInfo)) {
+            return abort(404);
+        }
+        $commendList = Comment::where('status', Comment::STATUS_NO)->where('book_uuid', $bookInfo['uuid'])->paginate(1);
+        $data = [
+            'bookinfo' => $bookInfo,
+            'comment' => $commendList
+        ];
+        return view('wap.chapter.comment', $data);
     }
 }
