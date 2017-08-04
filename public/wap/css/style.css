@@ -380,7 +380,9 @@ label.checkbox, label.radio {
 
 .ultop li, .ulrow li, .ullist li, .ulnum li, .ultwo li, .ulhover li {
   overflow: hidden;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  padding: 10px;
+  border-bottom: 1px dashed #ccc;}
 
 .ultop em, .ulrow em, .ullist em, .ulnav em, .ulnum em, .ulhover em {
   float: right;
@@ -393,6 +395,10 @@ label.checkbox, label.radio {
 
 .ultop li, .ulrow li {
   border-bottom: 1px dotted #eceeef; }
+
+.ullist li p {
+  padding-top:10px;
+}
 
 .ulnav {
   font-size: 1.25em; }
@@ -642,7 +648,7 @@ label.checkbox, label.radio {
   margin-left: 0.5em; }
 
 .pagetitle {
-  background: #333;
+  background: cadetblue;
   color: #fff;
   margin: 0 0 0.6em 0;
   line-height: 2.5;
@@ -695,7 +701,7 @@ label.checkbox, label.radio {
 
 .footer {
   color: #fafafa;
-  background: #333;
+  background: cadetblue;
   text-align: center;
   padding: 2em 0;
   line-height: 2;
@@ -900,7 +906,9 @@ ul.tabb li a {
   text-align: left; }
 
 .tc {
-  text-align: center; }
+  text-align: center;
+  padding: 15px 0px 0px 0px;
+}
 
 .tr {
   text-align: right; }

@@ -163,32 +163,6 @@ if (!function_exists('file_id2url')) {
     }
 }
 
-/**
- * 根据附件ID返回附件名称
- * @author: xingyonghe
- * @date: 2016-12-9
- * @param string $fileId
- * @param string $find 要查找的字段
- * @return string
- */
-function file_id2name(string $fileId, $find = '')
-{
-    if (!\Ramsey\Uuid\Uuid::isValid($fileId)) {
-        return '';
-    }
-    $file = \App\Models\DisFile::where('file_id',$fileId)->first();
-    if (empty($file)) {
-        return '';
-    }
-    //取得文件的后缀
-    $arr = explode('.',$file->file_name);
-    $file['ext'] = last($arr);
-    if ($find) {
-        return $file->$find;
-    }
-    return $file;
-}
-
 if ( ! function_exists('sql_dump')) {
     /**
      * 打印原生sql语句
@@ -365,8 +339,6 @@ if (!function_exists("qiniu_domain")) {
         }
     }
 }
-
-
 
 /**
  * @param $array_str  使用「点」式语法从深度嵌套数组中取回指定的值 ，如：products.desk 就是取出数组products下的desk值

@@ -20,10 +20,9 @@
             <div class="tc"><a class="hot f_l" href="{!! to_route('home.book.detaile',['id'=>$bookinfo['id']]) !!}">{{$bookinfo['title']}}</a></div>
             <ul class="ullist">
                 @if($comment->isEmpty() === true)
-                    <li>
-                        <a class="db cf" href="http://m.5du5.net/hf/55355/1.html">
-                            <em>2017-07-22 06:28:00</em><b>一个人，湿：</b>
-                            <p>主神的女怎么这么，总算南宫分开了。</p>
+                    <li style=" height: 101px;text-align: center;line-height: 100px;">
+                        <a class="db cf" href="javascript:;">
+                            <p>暂无评论数据</p>
                         </a>
                     </li>
                     @else

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 class Comment extends Model
 {
-    protected $perPage = 3;
     const STATUS_NO = 1;//审核中
     const STATUS_NORMAL = 2;//正常
     const STATUS_STY = [

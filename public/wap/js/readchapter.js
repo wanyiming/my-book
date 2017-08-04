@@ -10,21 +10,20 @@ try{
 }
 
 //如果有记录最近阅读章节就跳转到对应章节，否则显示第一章
-function read_chapter(aid){
+function read_chapter(bookId, firstId){
     var cid = 0;
     if(bookary.length > 0){
         for(var i = bookary.length - 1; i >= 0; i--){
-            if(bookary[i].articleid == aid){
+            if(bookary[i].articleid == bookId){
                 if(bookary[i].chapterid > 0) cid = bookary[i].chapterid;
                 break;
             }
         }
     }
     if(cid > 0){
-        //window.location.href = "/modules/article/reader.php?aid="+aid+"&cid="+cid;
-        window.location.href = "/book/"+aid+"/"+cid+"/";
+        window.location.href = "/book/"+bookId+"/"+cid+".html";
     }else{
-        window.location.href = "/modules/article/firstchapter.php?aid="+aid;
+        window.location.href = "/book/"+bookId+"/"+firstId+".html";
     }
 }
 

@@ -14,7 +14,6 @@ jieqiUserInfo['jieqiUserHonor'] = ''; //头衔
 jieqiUserInfo['jieqiUserHonor_un'] = ''; //UNICODE编码的头衔
 jieqiUserInfo['jieqiNewMessage'] = 0; //新消息数量，默认 0
 jieqiUserInfo['jieqiUserPassword'] = ''; //用户密码（MD5后的值）
-
 //读取COOKIE，解析后赋值到数组
 if(document.cookie.indexOf('jieqiUserInfo') >= 0){
     var cookieInfo = get_cookie_value('jieqiUserInfo');

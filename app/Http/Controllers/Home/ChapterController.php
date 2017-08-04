@@ -101,7 +101,7 @@ class ChapterController extends Controller
         if (empty($bookInfo)) {
             return abort(404);
         }
-        $commendList = Comment::where('status', Comment::STATUS_NO)->where('book_uuid', $bookInfo['uuid'])->paginate(1);
+        $commendList = Comment::where('status', Comment::STATUS_NO)->where('book_uuid', $bookInfo['uuid'])->paginate();
         $data = [
             'bookinfo' => $bookInfo,
             'comment' => $commendList

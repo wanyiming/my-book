@@ -8,15 +8,14 @@
         @endif
         @foreach ($elements as $element)
             @if (is_string($element))
-               <span>{{ $element }}</span>
+               {{--<span>{{ $element }}</span>--}}
             @endif
-
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
                             <strong>{{ $page }}</strong>
                     @else
-                        <a href="{{ $url }}" class="r_border">{{ $page }}</a>
+                        {{--<a href="{{ $url }}" class="r_border">{{ $page }}</a>--}}
                     @endif
                 @endforeach
             @endif
@@ -24,7 +23,7 @@
         @if ($paginator->hasMorePages())
             <a href="{{ $paginator->nextPageUrl() }}" class="next">下一页</a>
         @else
-            <a class="disabled r_border">下一页</a>
+            <a class="disabled r_border next">下一页</a>
         @endif
     </div>
 </div>

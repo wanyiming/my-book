@@ -38,7 +38,7 @@ else usePages = false;
 
 //显示阅读工具
 var ReadTools = {
-    bgcolor: ['#F0F0F0', '#000000', '#ffebcd', '#c7edcc', '#e7f4fe'],
+    bgcolor: ['#FFFFFF', '#000000', '#ffebcd', '#c7edcc', '#e7f4fe'],
     fontcolor: ['#000000', '#555555', '#000000', '#333333', '#000000'],
     bgname: ['白天', '夜间', '怀旧', '护眼', '青春'],
     fontsize: ['0.857em', '1em', '1.143em', '1.286em', '1.429em'],
@@ -170,7 +170,7 @@ var ReadTools = {
         var isdisplay = ReadTools.showtools ? '' : 'none';
 
         output += '<div id="toptools" class="toptools cf" style="display:' + isdisplay + ';">\
-		<a href="javascript: window.location.href = url_articleinfo;" class="iconfont fl">&#xee69;</a>\
+		<a href="javascript: window.location.href = url_book_info;" class="iconfont fl">&#xee69;</a>\
 		<a href="javascript: window.location.href = url_home;" class="iconfont fr">&#xee27;</a>\
 		<a href="javascript: ReadTools.CallShow(\'sizecolor\');" class="iconfont fr">&#xee26;</a>\
 		<!--a href="javascript: ReadTools.CallShow(\'givetip\');" class="iconfont fr">&#xee42;</a-->\

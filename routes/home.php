@@ -15,9 +15,13 @@ Route::group(['namespace' => 'Home'], function () {
     Route::get('/book/{bookid}/chapter-{order}/{page}.html', 'ChapterController@lists')->where('bookid','\d{0,10}')->where('order','(desc|asc)')->where('page', '\d{0,6}')->name('home.chapter.lists'); // 书本章节列表
     Route::get('/book/comment/{bookid}.html', 'ChapterController@comment')->where('bookid','\d{0,6}')->name('home.chapter.comment');
 
+    // 登录页面
+    Route::get('login.html','LoginController@login')->name('home.login.view');
+
     // 用户注册
     Route::get('register','RegisterController@index')->name('register');//注册页面
     Route::post('home/passport/register', 'RegisterController@getPostCaptcha')->name('passport.register'); // 提交注册信息
+
 
     // 主页基本信息
     Route::get('jiancai','IndexController@jiancai')->name('home.jiancai'); // 建材主页

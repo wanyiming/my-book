@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Throwable;
 
 /**
- * 前台登录（厂商/经销商/普通用户（普通用户、普通项目经理、高级项目经理））
- * @author  liufangyuan
+ * @author wym
  * Class LoginController
  * @package App\Http\Controllers\Home
  */
@@ -23,19 +22,16 @@ class LoginController extends Controller
 {
 
     /**
-     * 获取普通用户登录页面
-     * @author: liufangyuan
-     * @date: 2016-12-8
+     * 登录页面
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function homeLogin()
+    public function login()
     {
-        $redirectUrl = request()->query('redirect_url');
-        $fromUrl = empty($redirectUrl) ? (url()->previous() ?? url('/')) : $redirectUrl;
-        if (preg_match('~(default|home/login)?~',$fromUrl)) {
-            $fromUrl = url('/');
-        }
-        return view('home.login.homeLogin',['fromurl' => $fromUrl]);
+        return view('wap.login.homeLogin');
+    }
+
+    public function register () {
+        return view('wap.login.register');
     }
 
     /**

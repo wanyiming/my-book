@@ -24,8 +24,8 @@
     <script type="text/javascript" src="{{asset('wap/js/readlog.js')}}"></script>
 @endsection
 @section('content')
-    {{--<div class="pagetitle cf"><a href="/book/1191.html"><i class="iconfont fl">&#xee69;</i></a><a href="/"><i class="iconfont fr">&#xee27;</i></a>章节阅读</div>--}}
-    <div id="aread" class="main cf" style="background-color: rgb(240, 240, 240); color: rgb(0, 0, 0); font-size: 1em;">
+    {{--<div class="pagetitle cf"><a href="javascript:;"><i class="iconfont fl">&#xee69;</i></a><a href="/"><i class="iconfont fr">&#xee27;</i></a>章节阅读</div>--}}
+    <div id="aread" class="main cf" style="">
         <div class="cb"></div>
         <div id="abox" class="abox">
             <div id="apage" class="apage">
