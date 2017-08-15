@@ -38,4 +38,25 @@ class User extends Model
     public $timestamps = false;
 
 
+    public function hasLogin ($username, $password) {
+        if (empty($username) || empty($password)) {
+            return response_error('登录失败');
+        }
+        $userInfo = self::where('username', $password)->first();
+        if (empty($userInfo)) {
+            return response_error('账户信息不存在');
+        }
+        if( !password_verify($username + $userInfo->path_str,password_hash($userInfo->password, PASSWORD_BCRYPT))) {
+            return response_error('登录失败，密码错误');
+        }
+        if ($userInfo->status == self::STATUS_OFF) {
+            return response_error('账户已被锁定，请联系管理者');
+        }
+        session(['member' => $userInfo->toArray()]);
+        \Session::save();
+
+        UserOperationLog::addLog($userInfo->id, 2, 1, time(), '用户登录',null, '');
+
+        return response_message('登录成功', 1, ['url' => to_route(\Request::get('scoureUrl'))]);
+    }
 }

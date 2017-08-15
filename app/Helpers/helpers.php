@@ -836,3 +836,50 @@ function json2row($json)
 }
 
 
+function get_user_session_info($array_str = ''){
+    try {
+        if (!session('member')){
+            return null;
+            /*$sessionInfo = \Illuminate\Support\Facades\DB::table('user_association as u')
+                ->join('home_user as h','h.user_uuid','=','u.uuid')
+                ->where('sso_id',$brokerUserSessionInfo['id'])->first();
+            $sessionInfo = object2array($sessionInfo);
+            session(['member'=>$sessionInfo]);*/
+        }else {
+            $sessionInfo = session('member');
+        }
+        if ($array_str) {
+            $result = array_get($sessionInfo, $array_str);
+        } else {
+            $result = $sessionInfo;
+        }
+        /*开发阶段临时数据--结束*/
+        return $result;
+    } catch (Throwable $exception) {
+        Log::warning($exception);
+    }
+    return null;
+}
+
+
+if ( !function_exists("set_user_session_info") ) {
+    function set_user_session_info ($field = '',$value = null) {
+        if (empty($field)) {
+            return false;
+        }
+        $sessionInfo = session('member');
+        if (empty($sessionInfo) || !in_array($field, array_keys($sessionInfo))) {
+            Log::warning('未找到用户的信息');
+            return false;
+        }
+        if (is_null($value)) {
+            unset($sessionInfo[$field]);
+        } else {
+            $sessionInfo[$field] = $value;
+        }
+        session(['member'=>$sessionInfo]);
+        Session::save();
+        return true;
+    }
+}
+

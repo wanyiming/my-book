@@ -12,6 +12,9 @@
                         layer.msg(result.msg,{icon:1});
                     } else {
                         layer.msg(result.msg,{icon:2});
+                        if (result.msg == '请先登录') {
+                            location.href = "{!! to_route('home.login') !!}";
+                        }
                     }
                 })
             })
@@ -60,7 +63,7 @@
                 <div class="blockcontent fsss"><font color="red">已启用缓存技术，最新章节可能会延时显示，登录书架即可实时查看</font></div>
             </div>
             <div class="c_row nw">
-                <span class="note">最新：</span><a href="{!! to_route('home.chapter.detaile',['bookid' => $bookinfo['id'], 'chapter' => array_keys($chapter['newData'])[0]]) !!}">{{$bookinfo['update_fild']}}</a>
+                <span class="note"> 最新：</span><a href="{!! to_route('home.chapter.detaile',['bookid' => $bookinfo['id'], 'chapter' => array_keys($chapter['newData'])[0]]) !!}">{{$bookinfo['update_fild']}}</a>
                 ({!! date('Y-m-d',strtotime($bookinfo['update_time'])) !!})
             </div>
         </div>

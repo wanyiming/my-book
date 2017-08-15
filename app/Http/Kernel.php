@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\AdminHasloginMiddleware;
 use App\Http\Middleware\AdminRBACMiddleware;
 use App\Http\Middleware\AdminSafeMiddleware;
+use App\Http\Middleware\HomeLoginMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -63,5 +64,6 @@ class Kernel extends HttpKernel
         'admin.rbac' => AdminRBACMiddleware::class,
         'admin.safe' => AdminSafeMiddleware::class,
         'admin.haslogin' => AdminHasloginMiddleware::class,
+        'home.login' => HomeLoginMiddleware::class,
     ];
 }

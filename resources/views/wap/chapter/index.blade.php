@@ -34,12 +34,19 @@
                     {!! html_entity_decode($chapter['content']) !!}
                 </div>
                 <div id="footlink" class="footlink">
-                    <a id="syy" href="http://m.5du5.net/book/1191/4003418/">上一页</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="http://m.5du5.net/1191/chapter_asc/1.html">返回目录</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a id="xyz" href="http://m.5du5.net/book/1191/4006421/">下一页</a>
+                    <a id="syy" href="{!! $url_first !!}">上一页</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{!! to_route('home.chapter.lists',['bookid'=>$bookinfo['id'],'order'=>'desc','chapterid'=>$chapter['id']]) !!}">返回目录</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a id="xyz" href="{!! $url_next !!}">下一页</a>
                 </div>
             </div>
         </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <div id="toptext" class="toptext" style="display:none;"></div>
         <div id="bottomtext" class="bottomtext" style="display:none;"></div>
         <div id="operatetip" class="operatetip" style="display:none;" onclick="this.style.display='none'">

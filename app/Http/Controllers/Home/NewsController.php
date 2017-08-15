@@ -9,6 +9,7 @@ class NewsController extends Controller
 {
     // 首页
     public function index (Request $request) {
+
         return view('home.news.index');
     }
 }

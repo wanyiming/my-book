@@ -77,7 +77,7 @@ class BookTypeController extends Controller
      */
     public function save(Request $request){
         try{
-            $params = $request->only('parent_id','name','status');
+            $params = $request->only('parent_id','name','status', 'seo');
             if (!$parent = BookType::where('id',$params['parent_id'])->first()) {
                 $params['parent_id'] = 0;
             }
@@ -85,6 +85,7 @@ class BookTypeController extends Controller
                 'parent_id' => intval($params['parent_id']),
                 'name'  => strval($params['name']),
                 'status' => intval($params['status']),
+                'seo' => strval($params['seo'])
             ];
             if (empty($params['name'])) {
                 return response_error('名称不能为空');
@@ -95,6 +96,7 @@ class BookTypeController extends Controller
                     return response_error('该分类类目不存在');
                 }
                 $bookTypeInfo['name'] = $params['name'];
+                $bookTypeInfo['seo'] = $params['seo'];
                 $bookTypeInfo['status'] = $params['status'];
                 $bookTypeInfo->save();
             }else{

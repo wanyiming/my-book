@@ -15,11 +15,16 @@
                                     <input class=" form-control" minlength="20" type="text" required value="{{$parentName}}" readonly/>
                                 </div>
                             </div>
-
                             <div class="form-group ">
                                 <label for="ccomment" class="control-label col-lg-2">节点名</label>
                                 <div class="col-lg-10">
                                     <input name="name" class="form-control" minlength="30" type="text" value="{{$typeInfo['name'] ?? ''}}" required />
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label for="ccomment" class="control-label col-lg-2">seo规则</label>
+                                <div class="col-lg-10">
+                                    <input name="seo" class="form-control" minlength="30" type="text" value="{{$typeInfo['seo'] ?? ''}}" required />
                                 </div>
                             </div>
                             <div class="form-group ">

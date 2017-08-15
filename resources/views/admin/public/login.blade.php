@@ -19,9 +19,7 @@
     <script src="{{asset('assets/js/respond.min.js')}}"></script>
     <![endif]-->
 </head>
-
 <body class="login-body">
-
 <div class="container">
     @include('admin.public.errors')
     <form class="form-signin" action="{{to_route('admin.public.post.login')}}" method="post" id="login-form">

@@ -31,16 +31,16 @@ class UserOperationLog extends Model
      * @param string $admin_operation_type  后台审核操作类型,只针对认证审核相关操作;1 后台通过资质认证；2 后台拒绝资质认证（后台操作必填！）
      * @return bool
      */
-    public static function addLog($userid, $from_type, $operation_type, $time, $remark, $ip, $city, $from_url, $now_url, $operation_id = 0, $operation_userid = 0,$admin_operation_type = 0){
+    public static function addLog($userid, $from_type = 1, $operation_type = 2, $time = null, $remark, $ip = null, $city, $from_url, $now_url, $operation_id = 0, $operation_userid = 0,$admin_operation_type = 0){
         $data['user_id'] = $userid;
         $data['from_type'] = $from_type;
         $data['operation_type'] = $operation_type;
         $data['admin_operation_type'] = $admin_operation_type;
         $data['operation_id'] = $operation_id;
         $data['operation_userid'] = $operation_userid;
-        $data['operation_time'] = $time;
+        $data['operation_time'] = $time ?? time();
         $data['remark'] = $remark;
-        $data['operation_ip'] = $ip;
+        $data['operation_ip'] = $ip ?? get_client_ip();
         $data['operation_city'] = $city;
         $data['from_url'] = $from_url;
         $data['now_url'] = $now_url;

@@ -13,6 +13,7 @@
     <meta http-equiv="Cache-Control" content="no-transform ">
     <title>{!! SEO::generate() !!}</title>
     @yield('styles')
+	<link rel="shortcut icon" href="{{asset('wap/image/icon.ico')}}" />
     <link rel="stylesheet" href="{!! asset('/wap/css/style.css') !!}" type="text/css" media="all">
     <script src="/assets/js/jquery-1.10.2.min.js"></script>
     <script src="/assets/js/jquery-ui-1.9.2.custom.min.js"></script>
@@ -22,6 +23,8 @@
 @if(empty($hasFooter))
 @include('wap.layouts.footer')
 @endif
+<script type="text/javascript"  src="{{asset('layer/layer.js')}}"></script>
+<script type="text/javascript"  src="{{asset('assets/common.js')}}"></script>
 <script type="text/javascript" src="{!! asset('/wap/js/hm.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('/wap/js/common.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('/wap/js/theme.js') !!}"></script>

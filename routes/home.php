@@ -14,13 +14,7 @@ Route::group(['namespace' => 'Home'], function () {
     Route::get('/book/{bookid}/{chapterid}.html', 'ChapterController@info')->where('bookid','\d{1,10}')->where('chapterid','\d{1,10}')->name('home.chapter.detaile'); // 章节详情
     Route::get('/book/{bookid}/chapter-{order}/{page}.html', 'ChapterController@lists')->where('bookid','\d{0,10}')->where('order','(desc|asc)')->where('page', '\d{0,6}')->name('home.chapter.lists'); // 书本章节列表
     Route::get('/book/comment/{bookid}.html', 'ChapterController@comment')->where('bookid','\d{0,6}')->name('home.chapter.comment');
-
-    // 登录页面
-    Route::get('login.html','LoginController@login')->name('home.login.view');
-
-    // 用户注册
-    Route::get('register','RegisterController@index')->name('register');//注册页面
-    Route::post('home/passport/register', 'RegisterController@getPostCaptcha')->name('passport.register'); // 提交注册信息
+    Route::get('/book/lists/{seo}/list_{page}', 'BookController@lists')->where('page','\d{0,10}')->name('home.book.sort');
 
 
     // 主页基本信息
@@ -53,8 +47,17 @@ Route::group(['namespace' => 'Home'], function () {
  */
 Route::group(['namespace' => 'Home'],function (){
 
+    Route::get('login.html','LoginController@login')->name('home.login'); // 登录页面
+    Route::post('/login','LoginController@loginPost')->name('home.post.login');// 会员登录
+
+    Route::get('qq', 'LoginController@QQ')->name('home.qq.login'); // QQ登录
+    Route::get('qqlogin', 'LoginController@QQLogin')->name('home.qq_login'); // QQ登录回来的地址
+
+    // 用户注册
+    Route::get('register','RegisterController@index')->name('register');//注册页面
+    Route::post('home/passport/register', 'RegisterController@getPostCaptcha')->name('passport.register'); // 提交注册信息
+
     // 普通会员
-    Route::get('home/login','LoginController@homeLogin')->name('home.login');// 普通会员登录
     Route::get('home/register','RegisterController@index')->name('home.register');// 会员注册
     Route::post('home/post_home_login','LoginController@getPostHomeLogin')->name('home.post_home_login');// 会员登录
     Route::post('home/get_code','LoginController@DynamicCode')->name('home.get_code');// 手机登录获取动态码

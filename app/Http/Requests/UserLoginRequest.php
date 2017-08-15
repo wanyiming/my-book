@@ -23,8 +23,8 @@ class UserLoginRequest extends Request
     public function rules()
     {
         return [
-            'username' => 'required|max:255',
-            'password' => 'required|min:8|max:16',
+            'username' => 'required|max:16|min:6',
+            'password' => 'required|min:6|max:16',
         ];
     }
 
@@ -36,10 +36,11 @@ class UserLoginRequest extends Request
     public function messages()
     {
         return [
-            'username.required' => '账号不能为空',
-            'username.max' => '账号长度不能超过225位',
+            'username.required' => '登录名不能为空',
+            'username.min' => '登录名长度不能低于6位',
+            'username.max' => '登录名长度不能超过16位',
             'password.required' => '密码不能为空',
-            'password.min' => '密码长度不能小于8位',
+            'password.min' => '密码长度不能小于6位',
             'password.max' => '密码长度不能大与16位'
         ];
     }
@@ -49,7 +50,7 @@ class UserLoginRequest extends Request
      */
     protected function formatErrors(Validator $validator)
     {
-        $return['info'] = $validator->errors()->first();
+        $return['msg'] = $validator->errors()->first();
         $return['status'] = -1;
         return $return;
     }

@@ -47,7 +47,7 @@
         <div class="atitle">
             {{$bookinfo['title']}}
             <span class="ainfo">
-                <a href="http://m.5du5.net/modules/article/authorarticle.php?author=%CB%D5%D0%A1%C5%AF">{{$bookinfo['author']}}</a> 著
+                <a href="javascript:;">{{$bookinfo['author']}}</a> 著
             </span>
         </div>
         <dl class="index" id="jieqi_page_contents">

@@ -11,7 +11,7 @@
 
     <link href="/assets/css/style.css" rel="stylesheet">
     <link href="/assets/css/style-responsive.css" rel="stylesheet">
-    <link rel="shortcut icon" href="{{STATIC_SITE.('home/images/jiancai.ico')}}" />
+    <link rel="shortcut icon" href="{{('wap/image/icon.ico')}}" />
     <!--[if lt IE 9]>
     <script src="/assets/js/html5shiv.js"></script>
     <script src="/assets/js/respond.min.js"></script>
