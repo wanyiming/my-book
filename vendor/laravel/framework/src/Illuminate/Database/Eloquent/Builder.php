@@ -683,6 +683,7 @@ class Builder
     public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
     {
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
+
         $perPage = $perPage ?: $this->model->getPerPage();
 
         $results = ($total = $this->toBase()->getCountForPagination())
@@ -932,7 +933,7 @@ class Builder
 
         $result = $scope(...array_values($parameters)) ?: $this;
 
-        if (count($query->wheres) > $originalWhereCount) {
+        if (count((array) $query->wheres) > $originalWhereCount) {
             $this->addNewWheresWithinGroup($query, $originalWhereCount);
         }
 

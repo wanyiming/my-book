@@ -26,7 +26,6 @@ trait BuildsQueries
             // no results we can just break and return from here. When there are results
             // we will call the callback with the current chunk of these results here.
             $results = $this->forPage($page, $count)->get();
-
             $countResults = $results->count();
 
             if ($countResults == 0) {
@@ -68,7 +67,7 @@ trait BuildsQueries
      * Execute the query and get the first result.
      *
      * @param  array  $columns
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model|static|null
      */
     public function first($columns = ['*'])
     {
