@@ -3,6 +3,23 @@
 @endsection
 @section('scripts')
     <script src="/assets/laydate/laydate.js"></script>
+    <script>
+        $(function () {
+            $(".operation").click(function () {
+                var dataId = $(this).attr('data-id');
+                var status = $(this).attr('data-status');
+                layer.confirm("确认操作？",{icon:3},function () {
+                    $.post("{!! to_route('admin.comment.edit_status') !!}", {id:dataId,status:status,_token:"{!! csrf_token() !!}"},function (result) {
+                        if (result.status > 0) {
+                            layer.msg(result.msg, {icon:1});
+                            location.reload(); return false;
+                        }
+                        layer.msg(result.msg, {icon:2});return false;
+                    })
+                })
+            })
+        })
+    </script>
 @endsection
 @section('content')
     <div class="wrapper">
@@ -89,12 +106,12 @@
                                             <td class=""><a class="delete" href="javascript:;">{{$v['create_time']}}</a></td>
                                             <td>
                                                 @if($v['status'] == \App\Models\Comment::STATUS_NO)
-                                                    <a class="ajax-restore operation" data-id="{{$v['id']}}" data-status="2"  href="javascript:;">
-                                                        <button class="btn btn-default btn-xs shangjia"><i class="fa fa-ban"></i> 停用</button>
+                                                    <a class="ajax-restore operation" data-status="{{\App\Models\Comment::STATUS_NORMAL}}" data-id="{{$v['id']}}" data-status="1"  href="javascript:;">
+                                                        <button class="btn btn-success btn-xs xiajia"><i class="fa fa-check"></i> 启用</button>
                                                     </a>
                                                 @elseif($v['status'] == \App\Models\Comment::STATUS_NORMAL)
-                                                    <a class="ajax-restore operation" data-id="{{$v['id']}}" data-status="1"  href="javascript:;">
-                                                        <button class="btn btn-success btn-xs xiajia"><i class="fa fa-check"></i> 启用</button>
+                                                    <a class="ajax-restore operation"  data-status="{{\App\Models\Comment::STATUS_NO}}" data-id="{{$v['id']}}" data-status="2"  href="javascript:;">
+                                                        <button class="btn btn-default btn-xs shangjia"><i class="fa fa-ban"></i> 停用</button>
                                                     </a>
                                                 @endif
                                             </td>

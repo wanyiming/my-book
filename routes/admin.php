@@ -132,7 +132,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['admin.rbac'], 'prefix' =
 
         //评价管理
         Route::get('comment/index','CommentController@index')->name('admin.comment.index'); // 审核列表
-        Route::post('comment/edit_status','CommentController@edit')->name('admin.comment.edit_status'); // 修改评价状态
+        Route::post('comment/edit','CommentController@edits')->name('admin.comment.edit_status'); // 修改评价状态
 
         // 留言和加盟申请
         Route::get('joinus/index','JoinController@index')->name('admin.join.index');

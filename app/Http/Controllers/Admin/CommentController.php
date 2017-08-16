@@ -37,14 +37,14 @@ class CommentController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function edit (Request $request) {
+    public function edits (Request $request) {
         try {
-            $id = $request->get('ids');
-            $status = $request->get('state');
+            $id = $request->get('id');
+            $status = $request->get('status');
             if (empty($id) || empty($status)) {
                 return response_error('请求参数错误');
             }
-            if (SrvComment::where('id', intval($id))->update(['status'=>intval($status)]) ) {
+            if (Comment::where('id', intval($id))->update(['status'=>intval($status)]) ) {
                 return response_message('操作成功');
             } else {
                 return response_error('操作失败');
