@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Facades\SEO;
 use App\Http\Requests\UserLoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,11 +19,8 @@ class LoginController extends Controller
 
     public function login()
     {
+        SEO::setTitle('登录 - 爱书窝小说网');
         return view('wap.login.homeLogin', ['scoureUrl' => \Route::currentRouteName()]);
-    }
-
-    public function register () {
-        return view('wap.login.register');
     }
 
     /**

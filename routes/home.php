@@ -14,16 +14,11 @@ Route::group(['namespace' => 'Home'], function () {
     Route::get('/book/{bookid}/{chapterid}.html', 'ChapterController@info')->where('bookid','\d{1,10}')->where('chapterid','\d{1,10}')->name('home.chapter.detaile'); // 章节详情
     Route::get('/book/{bookid}/chapter-{order}/{page}.html', 'ChapterController@lists')->where('bookid','\d{0,10}')->where('order','(desc|asc)')->where('page', '\d{0,6}')->name('home.chapter.lists'); // 书本章节列表
     Route::get('/book/comment/{bookid}.html', 'ChapterController@comment')->where('bookid','\d{0,6}')->name('home.chapter.comment');
-    Route::get('/book/lists/{seo}/list_{page}', 'BookController@lists')->where('page','\d{0,10}')->name('home.book.sort');
-
+    Route::get('/book/lists/{seo}/list_{page}', 'BookController@lists')->where('page','\d{0,10}')->name('home.book.sort'); //推荐类表
+    Route::get('/book/{seo}/list_{page}', 'BookController@typeList')->where('page','\d{0,10}')->name('book.type.list'); // 分类列表
+    Route::get('/search/{keyword}/list_{page}', 'BookController@searchList')->where('page','\d{0,10}')->name('search'); // 分类列表
 
     // 主页基本信息
-    Route::get('jiancai','IndexController@jiancai')->name('home.jiancai'); // 建材主页
-    Route::get('jiaju','IndexController@jiaju')->name('home.jiaju');// 家具主页
-    Route::get('shebei','IndexController@shebei')->name('home.shebei');// 设备主页
-    Route::get('changjia','ManufacturerController@index')->name('home.manufacturer.index'); // 厂家招商加盟首页
-    Route::get('dealers','DealerController@index')->name('home.dealer.index'); // 经销商招商加盟首页
-    Route::get('manager','MemberController@index')->name('home.project.manager.index'); // 经销商招商加盟首页
     Route::post('jm/save-apply','JoinController@saveApply')->name('home.jm.save.apply'); // 保存加盟信息
     Route::get('home/user/info','IndexController@userInfo')->middleware('sso')->name('home.user.info'); // 获取前台页面的top_bar信息
 
@@ -46,19 +41,17 @@ Route::group(['namespace' => 'Home'], function () {
  * 前台登录（普通会员，厂商，经销商）
  */
 Route::group(['namespace' => 'Home'],function (){
-
+    // 用户登录
     Route::get('login.html','LoginController@login')->name('home.login'); // 登录页面
     Route::post('/login','LoginController@loginPost')->name('home.post.login');// 会员登录
-
+    // QQ登录
     Route::get('qq', 'LoginController@QQ')->name('home.qq.login'); // QQ登录
     Route::get('qqlogin', 'LoginController@QQLogin')->name('home.qq_login'); // QQ登录回来的地址
-
     // 用户注册
-    Route::get('register','RegisterController@index')->name('register');//注册页面
+    Route::get('register.html','RegisterController@index')->name('home.register');//注册页面
+
     Route::post('home/passport/register', 'RegisterController@getPostCaptcha')->name('passport.register'); // 提交注册信息
 
-    // 普通会员
-    Route::get('home/register','RegisterController@index')->name('home.register');// 会员注册
     Route::post('home/post_home_login','LoginController@getPostHomeLogin')->name('home.post_home_login');// 会员登录
     Route::post('home/get_code','LoginController@DynamicCode')->name('home.get_code');// 手机登录获取动态码
     // 找回密码

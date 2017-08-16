@@ -132,7 +132,7 @@
         <div class="block">
             <div class="blocktitle">发表书评</div>
             <div class="blockcontent">
-                <form class="cf" name="frmreview" id="frmreview" method="post" action="">
+                {{--<form class="cf" name="frmreview" id="frmreview" method="post" action="">
                     <fieldset>
                         <div class="frow">
                             <textarea class="textarea" name="pcontent" id="pcontent" style="width:96%;height:5em;"></textarea>
@@ -145,8 +145,8 @@
                                     onclick="Ajax.Request('frmreview',{onComplete:function(){alert(this.response.replace(/<br[^<>]*>/g,'\n'));if(this.response.indexOf('验证码错误') != -1){$_('checkcode').value = $_('checkcode').focus();} else Form.reset('frmreview');}});"> 发表书评 </button>
                         </div>
                     </fieldset>
-                </form>
-               <br>您需要 <a href="http://m.5du5.net/login.php">登录</a> 才能发表书评！<br><br>
+                </form>--}}
+               <br>您需要 <a href="{!! to_route('home.login') !!}">登录</a> 才能发表书评！<br><br>
             </div>
         </div>
     </div>

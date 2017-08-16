@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Log;
 use Throwable;
 
 /**
- * 前台用户注册
  * @author  liufangyuan
  * Class RegisterController
  * @package App\Http\Controllers\Home
@@ -18,14 +17,12 @@ use Throwable;
 class RegisterController extends Controller
 {
     /**
-     * 前台用户注册
-     * @author: liufangyuan
-     * @date: 2016-12-8
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        return view('home.register.register');
+        \SEO::setTitle('注册 - 爱书窝小说网');
+        return view('wap.login.register');
     }
 
     /**

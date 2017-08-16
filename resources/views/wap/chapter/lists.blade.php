@@ -47,7 +47,7 @@
         <div class="atitle">
             {{$bookinfo['title']}}
             <span class="ainfo">
-                <a href="javascript:;">{{$bookinfo['author']}}</a> 著
+                <a href="{!! to_route('search',['keyword'=>$bookinfo['author'],'page'=>1]) !!}">{{$bookinfo['author']}}</a> 著
             </span>
         </div>
         <dl class="index" id="jieqi_page_contents">

@@ -88,12 +88,12 @@
                                             <td class=""><label class="{{$status[$v['status']]['class']}}">{{$status[$v['status']]['name']}}</label></td>
                                             <td class=""><a class="delete" href="javascript:;">{{$v['create_time']}}</a></td>
                                             <td>
-                                                @if($item['status'] == \App\Models\Comment::STATUS_NO)
-                                                    <a class="ajax-restore operation" data-id="{{$item['id']}}" data-status="2"  href="javascript:;">
+                                                @if($v['status'] == \App\Models\Comment::STATUS_NO)
+                                                    <a class="ajax-restore operation" data-id="{{$v['id']}}" data-status="2"  href="javascript:;">
                                                         <button class="btn btn-default btn-xs shangjia"><i class="fa fa-ban"></i> 停用</button>
                                                     </a>
-                                                @elseif($item['status'] == \App\Models\Comment::STATUS_NORMAL)
-                                                    <a class="ajax-restore operation" data-id="{{$item['id']}}" data-status="1"  href="javascript:;">
+                                                @elseif($v['status'] == \App\Models\Comment::STATUS_NORMAL)
+                                                    <a class="ajax-restore operation" data-id="{{$v['id']}}" data-status="1"  href="javascript:;">
                                                         <button class="btn btn-success btn-xs xiajia"><i class="fa fa-check"></i> 启用</button>
                                                     </a>
                                                 @endif

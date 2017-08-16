@@ -151,8 +151,8 @@ Route::group(['prefix' => 'admin','middleware'=>'admin.safe', 'namespace' => 'Ad
 
     // 自定义登录方法
     Route::group(['middleware' => 'admin.haslogin'], function () {
-	    Route::get('public/login/nwvcc2gqy1h87axgc3jd', 'PublicController@login')->name('admin_login');
-        Route::get('public/login/nwvcc2gqy1h87axgc3jd', 'PublicController@login')->name('admin.public.login'); // 登录地址
+	    Route::get('public/login/hkanWr2IAj1jrPqV', 'PublicController@login')->name('admin_login');
+        Route::get('public/login/hkanWr2IAj1jrPqV', 'PublicController@login')->name('admin.public.login'); // 登录地址
         Route::post('public/login', 'PublicController@postLogin')->name('admin.public.post.login'); // 提交登录
     });
     Route::get('public/logout', 'PublicController@logout')->name('admin.public.logout');

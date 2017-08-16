@@ -34,36 +34,31 @@
         <a href="javascript:if(history.length > 1) history.back(); else document.location.href='/'">
             <i class="iconfont fl"></i>
         </a>
-        <a href="http://m.2shuwo.com/" title="爱书窝：{{$filedStr['file_name'] ?? '点击榜'}}}}"><i class="iconfont fr"></i></a>
-        <h1>{{$filedStr['file_name'] ?? '点击榜'}}</h1>
+        <a href="http://m.2shuwo.com/" title="爱书窝：{{array_values($type_info)[0] ?? '都市言情'}}"><i class="iconfont fr"></i></a>
+        <h1>{{array_values($type_info)[0] ?? '都市言情'}}</h1>
     </div>
     <div id="content">
-        <table class="grid" width="100%" align="center">
-            <tbody><tr align="center">
-                <th width="15%">分类</th>
-                <th width="50%">书名/作者</th>
-                <th width="20%">{!! $filedStr['filed'] == 'update_time' ? '点击量' : mb_substr($filedStr['file_name'],0,2).'量' !!}</th>
-                <th width="15%">状态</th>
-            </tr>
-            </tbody>
-            <tbody id="jieqi_page_contents">
-                @foreach($data as $item)
-                <tr>
-                    <td align="center">{!! mb_substr((new \App\Models\BookType())->getTypeName($item->book_type), 0, 2) !!}</td>
-                    <td><a class="db nw" title="点击查看：{{$item->update_fild}}" href="{{to_route('home.book.detaile',['bookid'=>$item->id])}}">{{$item->title}}<span class="gray fss">/{{$item->author}}</span></a></td>
-                    <td align="center">
-                        @if($filedStr['filed'] =='update_time')
-                            {{$item->read_num}}
-                            @else
-                            <?php $filed = $filedStr['filed'];?>
-                            {{$item->$filed}}
-                        @endif
-                    </td>
-                    <td align="center">{{\App\Models\Books::TYPES_ALL[$item->type_id]['name']}}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="blockb">
+            <div class="blockcontent" id="jieqi_page_contents">
+                @if($data->isEmpty() === true)
+                    <div class="c_row cf">暂无数据</div>
+                    @else
+                    @foreach($data as $typeKey=>$typeTiem)
+                        <div class="c_row cf">
+                            <a class="db cf"  href="{!! to_route('home.book.detaile',['id' => $typeTiem->id]) !!}"  title="点击查看：{!! to_route('home.book.detaile',['id' => $typeTiem->id]) !!}" >
+                                <div class="row_cover">
+                                    <img class="cover_m" title="{{$typeTiem->title}}"  alt="{{$typeTiem->title}}"  src="{{$typeTiem->book_cover}}">
+                                </div>
+                                <div class="row_text">
+                                    <h4>{{$typeTiem->title}}</h4>
+                                    <p class="gray">{{array_values($type_info)[0] ?? '都市言情'}} | {{$typeTiem->author}}<br>    {{ msubstr($typeTiem->profiles,0,65)}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+        </div>
         <div class="pages">
             <div class="pagelink cf" id="pagelink">
                 <a href="{!! $url_prev !!}" class="prev">上一页</a>

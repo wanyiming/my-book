@@ -235,6 +235,7 @@
     top: 0;
     width: 100%;
     overflow: hidden;
+    max-width: 768px;
 }
 .toptools a{
     color: #fff;
@@ -252,6 +253,7 @@
     bottom: 0;
     width: 100%;
     overflow: hidden;
+    max-width: 768px;
 }
 .bottomtools li{
     float: left;

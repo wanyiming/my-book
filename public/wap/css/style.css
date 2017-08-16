@@ -27,6 +27,8 @@ body {
   background-color: #fff;
   word-wrap: break-word;
   word-break: break-all;
+  max-width:768px;
+  margin: 0px auto;
   _behavior: url("/css/csshover3.htc"); }
 
 ul {
@@ -279,7 +281,7 @@ form .flabel {
   text-align: right;
   vertical-align: middle; }
 form .frow {
-  margin: 0.6em 0; }
+  margin: 0.6em 0; padding: 3px 0px }
   form .frow .last {
     float: right;
     margin-right: 0; }
@@ -943,7 +945,7 @@ ul.tabb li a {
   width: 20%; }
 
 .hot, a.hot {
-  color: #f0ad4e; }
+  color: cadetblue; }
 
 .bg_hot {
   background: #f0ad4e;
@@ -967,7 +969,7 @@ ul.tabb li a {
   background: #fff; }
 
 .gray, a.gray {
-  color: #818a91; }
+  color: #818a91; font-size: 13px}
 
 .bg_gray {
   background: #818a91;
@@ -1004,6 +1006,13 @@ ul.tabb li a {
 
 .primary, a.primary {
   color: #0275d8; }
+
+#book_type ul li  {
+  padding: 25px 8px 10px 8px; float: left;
+}
+#book_type ul li a {
+  padding: 5px; border: 1px solid; background: #00C1B3; color: #ffffff;
+}
 
 .bg_primary {
   background: #0275d8;

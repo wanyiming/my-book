@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Models\BookChapter;
 use App\Models\Books;
 use App\Http\Controllers\Controller;
+use App\Models\BookType;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
@@ -40,6 +41,14 @@ class ChapterController extends Controller
             'url_next' => (new BookChapter())->getPage($bookInfo['uuid'], $bookId, $chapterId, false),
             'url_first' => (new BookChapter())->getPage($bookInfo['uuid'], $bookId, $chapterId),
         ];
+        \SEO::setRule('WAP_CHAPTER_INFO');
+        \SEO::setVariables([
+            'bookTitle' => $bookInfo['title'],
+            'chapterTitle' => $chapterInfo['title'],
+            'typeName' => (new BookType())->getTypeName($bookInfo['book_type']),
+            'author' => $bookInfo['author'],
+            'update_file' => $bookInfo['update_fild']
+        ]);
         return view('wap.chapter.index', $data);
     }
 
@@ -83,6 +92,12 @@ class ChapterController extends Controller
             'url_prev' => $page <= 1 ? to_route('home.chapter.lists',['bookid' => $bookId, 'order' => $orderFiled,'page'=>1]) : str_replace($page.'.html', ($page - 1) . '.html', $urlPrevious),
             'url_next' => $page >= $totalCount ?  to_route('home.chapter.lists',['bookid' => $bookId, 'order' => $orderFiled,'page'=>$totalCount])  : str_replace($page.'.html', ($page + 1) . '.html', $urlPrevious),
         ];
+        \SEO::setRule('WAO_BOOK_CHAPTER');
+        \SEO::setVariables([
+            'bookTitle' => $bookInfo['title'],
+            'sort' => $data['orderName'],
+            'profiles' => $bookInfo['profiles']
+        ]);
         return view('wap.chapter.lists', $data);
     }
 
@@ -101,11 +116,16 @@ class ChapterController extends Controller
         if (empty($bookInfo)) {
             return abort(404);
         }
-        $commendList = Comment::where('status', Comment::STATUS_NO)->where('book_uuid', $bookInfo['uuid'])->paginate();
+        $commendList = Comment::where('status', Comment::STATUS_NORMAL)->where('book_uuid', $bookInfo['uuid'])->paginate();
         $data = [
             'bookinfo' => $bookInfo,
             'comment' => $commendList
         ];
+        \SEO::setRule('WAP_COMMENT');
+        \SEO::setVariables([
+            'bookTitle' => $bookInfo['title'],
+            'author' => $bookInfo['author'],
+        ]);
         return view('wap.chapter.comment', $data);
     }
 }

@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Home;
 
 
+use App\Facades\SEO;
 use App\Http\Controllers\Controller;
 use App\Models\Books;
 use App\Models\BookType;
@@ -27,6 +28,7 @@ class IndexController extends Controller
 			'collection_data' => (new Books())->orderData('all', 'recoll_num',5),
             'book_types' => array_pluck(BookType::all(),null, 'key')
         ];
+        SEO::setRule('WAP_HOME');
         return view('wap.news.index', $data);
     }
 }

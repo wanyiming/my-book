@@ -1,13 +1,5 @@
 @extends('wap.layouts.base')
 @section('styles')
-    <style type="text/css">
-        #book_type ul li  {
-            padding: 25px 8px 10px 8px; float: left;
-        }
-        #book_type ul li a {
-            padding: 5px; border: 1px solid; background: #00C1B3; color: #ffffff;
-        }
-    </style>
 @endsection
 @section('scripts')
     <script>
@@ -31,6 +23,14 @@
                 }
             })
         })
+        function searchBook() {
+            var keyword =  $('#t_searchkey').val();
+            if (!keyword) {
+                layer.msg("请输入搜索内容", {icon:2});return false;
+            }
+            location.href = '//'+window.location.host + '/search/'+ keyword + '/list_1';
+            return false;
+        }
     </script>
 @endsection
 @section('content')
@@ -47,7 +47,7 @@
     <div id="book_type">
         <ul>
             @foreach($book_types as $tKey => $tVal)
-                <li><a href="" title="">{{$tVal->name}}</a></li>
+                <li><a href="{!! route('book.type.list',['seo' => $tVal->seo,'page'=>1]) !!}" title="">{{$tVal->name}}</a></li>
             @endforeach
         </ul>
     </div>
@@ -62,7 +62,7 @@
 <div id="content">
     <div class="blockc">
         <div class="topsearch">
-            <form name="t_frmsearch" method="post" action="http://m.5du5.net/modules/article/search.php" class="ts_form" onsubmit="if(document.getElementById(&#39;t_searchkey&#39;).value == &#39;&#39;){alert(&#39;请输入搜索内容！&#39;); document.getElementById(&#39;t_searchkey&#39;).focus(); return false;}">
+            <form name="t_frmsearch" method="get"  class="ts_form" onsubmit="return searchBook();">
                 <div class="ts_input">
                     <input name="searchkey" id="t_searchkey" type="text" class="ts_key"><input name="searchtype" type="hidden" value="all">
                 </div>
@@ -179,7 +179,7 @@
 							<img class="cover_i" title="{{$collData->title}}" src="{{$collData->book_cover}}">
 						</div>
 						<div class="row_text">
-							<h4>{{$collData->update_fild}}</h4>
+							<h4>{{$collData->title}}</h4>
 							<p class="gray fss">{!! $book_types[$collData->book_type]->name !!} | {{$collData->author}}<br>    {!! msubstr(strip_tags($collData->profiles),0,45) !!}</p>
 						</div>
 					</a>

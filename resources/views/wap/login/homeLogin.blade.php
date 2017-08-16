@@ -42,12 +42,12 @@
 					<tr>
 						<td colspan="2">
 							<p><button type="button" class="button" name="submit">登　录</button></p>
-							<p><a href="{!! to_route('home.qq.login') !!}?scoureUrl={{$scoureUrl}}"><img src="{!! asset('wap/image/qq_login.gif') !!}" alt="用QQ账号登录" border="0"></a></p>
+							{{--<p><a href="{!! to_route('home.qq.login') !!}?scoureUrl={{$scoureUrl}}"><img src="{!! asset('wap/image/qq_login.gif') !!}" alt="用QQ账号登录" border="0"></a></p>--}}
 						</td>
 					</tr>
 				</table>
 				<div class="frow foot">
-					<a href="http://m.5du5.net/register.php">注册账号</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="http://m.5du5.net/getpass.php">忘记密码？</a>
+					<a href="{!! to_route('home.register') !!}">注册账号</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="http://m.5du5.net/getpass.php">忘记密码？</a>
 				</div>
 			</fieldset>
 		</form>

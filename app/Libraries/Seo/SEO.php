@@ -85,8 +85,8 @@ class SEO
     {
         $this->compile();
         return sprintf('<title>%s</title>' . PHP_EOL
-            . '<meta name="description" content="%s">' . PHP_EOL
-            . '<meta name="keywords" content="%s">',
+            . '    <meta name="description" content="%s">' . PHP_EOL
+            . '    <meta name="keywords" content="%s">',
             htmlspecialchars($this->title),
             htmlspecialchars($this->description),
             htmlspecialchars($this->keywords)
@@ -177,15 +177,12 @@ class SEO
 
     protected function initGlobalVariables()
     {
-        \DB::table('sys_variable')->chunk(100, function($variables)
-        {
-            foreach ($variables as $variable)
-            {
-                if(!$this->existsVariable($variable->variable)){
-                    $this->setVariable($variable->variable,$variable->name);
-                }
+        $results  = \DB::table('sys_variable')->get();
+        foreach ($results as $result) {
+            if(!$this->existsVariable($result->variable)){
+                $this->setVariable($result->variable,$result->name);
             }
-        });
+        }
         return ;
     }
     protected function reduce($ret, $next)

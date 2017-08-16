@@ -21,4 +21,10 @@ class BookType extends Model
         return self::where('key', $uuid)->value('name') ?? '未找到该分类';
     }
 
+    public function getTypeUuid (string $seoStr) {
+        if (empty($seoStr)) {
+            return '';
+        }
+        return self::where('seo', (string)$seoStr)->pluck('name','key')->toArray();
+    }
 }

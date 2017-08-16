@@ -83,6 +83,6 @@ class Comment extends Model
         if (empty($bookUuid)) {
             return [];
         }
-        return Comment::where('book_uuid', $bookUuid)->where('status', self::STATUS_NO)->take($limit)->select('id','name','content', 'create_time')->get()->toArray();
+        return Comment::where('book_uuid', $bookUuid)->where('status', self::STATUS_NORMAL)->take($limit)->select('id','name','content', 'create_time')->get()->toArray();
     }
 }
