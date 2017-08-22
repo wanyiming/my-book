@@ -27,6 +27,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label class="col-lg-3 col-sm-3 control-label">分类：</label>
                             <div class="col-lg-9">
@@ -115,6 +116,14 @@
                             <label class="col-sm-2 control-label">阅读量：</label>
                             <div class="col-sm-3">
                                 <input maxlength="30" type="text" class="form-control" name="reading_num" value="{{$info['reading_num'] ?? ''}}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">字数：</label>
+                            <div class="col-sm-3">
+                                <div class="iconic-input right">
+                                    <input type="text" class="form-control" name="reading_num" value="{{$info['reading_num']}}" placeholder="right icon">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">

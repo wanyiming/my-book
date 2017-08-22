@@ -39,13 +39,19 @@ class BookChapter extends Model
             return response_error('需要保存的书本信息不存在');
         }
         $hasTrue = false;
+        $content = $newData['chapter_content'];
+        unset($newData['content']);
         if (empty($id)) {
             $newData['uuid'] = Uuid::uuid4();
             $hasTrue = self::insertGetId($newData);
         } else {
             $hasTrue = self::where('id',intval($id))->update($newData);
+            if ($hasTrue) {
+                $id = $hasTrue;
+            }
         }
         if ($hasTrue) {
+            \DB::table('chapter_content')->updateOrInsert(['uuid'=>self::where('id', $id)->value('uuid')], ['content' => $content]);
             return response_success(['url'=>to_route('admin.books.chapter',['uuid' => $newData['book_uuid']])],'操作成功');
         }
         return response_error('保存失败');
@@ -84,6 +90,16 @@ class BookChapter extends Model
             return to_route('home.book.detaile', ['id' => $bookId]);
         }
         return to_route('home.chapter.detaile', ['bookid' => $bookId, 'chapterid' => $chapterId]);
+
+    }
+
+    /**
+     * 返回章节内容
+     * @param $chapterUuid 章节uuid
+     * @return mixed
+     */
+    public function getContent ($chapterUuid) {
+        return \DB::table('chapter_content')->where('uuid', $chapterUuid)->value('content');
     }
 
 

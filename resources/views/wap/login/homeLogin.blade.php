@@ -47,7 +47,7 @@
 					</tr>
 				</table>
 				<div class="frow foot">
-					<a href="{!! to_route('home.register') !!}">注册账号</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="http://m.5du5.net/getpass.php">忘记密码？</a>
+					<a href="javascript:;">注册账号</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="javascript:;">忘记密码？</a>
 				</div>
 			</fieldset>
 		</form>

@@ -32,6 +32,10 @@ class ChapterController extends Controller
         } else {
             (new BookChapter())->setReadingNum($chapterId);
         }
+
+        // 章节内容
+        $chapterInfo['content'] = \DB::table('chapter_content')->where('uuid', $chapterInfo['uuid'])->value('content');
+
         // 其它信息、当前页，下一页，上一页，返回目录地址，
         $data = [
             'hasFooter' => true,

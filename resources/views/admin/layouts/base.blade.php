@@ -56,8 +56,8 @@
         </div>
     </div>
     <div class="left-side sticky-left-side" style="background: #424f63">
-        <div class="logo">
-            <a href="{{to_route('admin.index')}}"><img src="/assets/images/logo.png" alt=""></a>
+        <div class="logo" style="text-align: center">
+            <label for="" style="color: #ffffff; font-size: 18px;line-height: 40px;">{!! config('admin_config.SITE_TITLE') !!}</label>
         </div>
         <div class="logo-icon text-center">
             <a href="/"><img src="/assets/images/logo_icon.png" alt=""></a>

@@ -69,6 +69,7 @@ class BooksChapterController extends Controller
         if (empty($chapterLastInfo)) {
             return redirect()->to(to_route('admin.books.lists'));
         }
+        $chapterLastInfo->content = (new BookChapter())->getContent($chapterLastInfo->uuid);
         $bookInfo = Books::where([
             ['uuid','=',$chapterLastInfo->book_uuid],
         ])->first();
@@ -86,7 +87,7 @@ class BooksChapterController extends Controller
     public function store(Request $request)
     {
         try{
-            $saveData = $request->only('title', 'book_uuid', 'url','reading_num', 'content');
+            $saveData = $request->only('title', 'book_uuid', 'url','reading_num', 'content', 'font_size');
             return (new BookChapter())->saveData($saveData, $request->get('id') ?? 0);
         }catch (\Throwable $e){
             \Log::error($e->getMessage());
