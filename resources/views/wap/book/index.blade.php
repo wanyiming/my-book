@@ -44,7 +44,7 @@
                     <h4 class="mbs"><span class="fr fss">[{!! (new \App\Models\BookType())->getTypeName($bookinfo['book_type']) !!}]</span>{{$bookinfo['title']}}</h4>
                     <p class="gray fss">
                         <span class="fr fss">{{$bookinfo['font_size']}}字</span>{{$bookinfo['author']}} 著<br>
-                        <span class="fr fss">{{$bookinfo['read_num']}}人看过</span>状态 : {!! \App\Models\Books::TYPES_ALL[$bookinfo['status']]['name'] !!}<br>
+                        <span class="fr fss">{{$bookinfo['read_num']}}人看过</span>状态 : {!! \App\Models\Books::TYPES_ALL[$bookinfo['type_id']]['name'] !!}<br>
                     </p>
                     <div class="tc mt">
                         <a class="btnlink b_hot" href="javascript:read_chapter('{{$bookinfo['id']}}', '<?php echo array_keys($chapter['firstData'])[0]?>');">

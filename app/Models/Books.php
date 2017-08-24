@@ -86,11 +86,11 @@ class Books extends Model
             if ($typeUuid != 'all') {
                 $query->where('book_type', $typeUuid);
             }
-        })->select('id','title','author','book_type','recom_num','read_num','recoll_num','update_fild', 'book_type', 'book_cover', 'type_id', 'profiles')
+        })->where('status', Books::STATUS_ON)->select('id','title','author','book_type','recom_num','read_num','recoll_num','update_fild', 'book_type', 'book_cover', 'type_id', 'profiles')
             ->orderBy($orderFiled, 'desc')->forPage($office, $limit)->get();
     }
 
-
+	
     public function orderDataTotal ($typeUuid = 'all') {
         return self::where(function ($query) use ($typeUuid) {
             if ($typeUuid != 'all') {
