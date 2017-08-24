@@ -114,6 +114,7 @@ class Books extends Model
         self::where('id', intval($id))->increment('read_num');
     }
 
+
     public function getBookInfo ($bookId) {
         if (empty($bookId)) {
             return [];
