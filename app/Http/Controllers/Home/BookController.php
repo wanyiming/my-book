@@ -7,6 +7,7 @@ use App\Models\BookChapter;
 use App\Models\Books;
 use App\Models\BookType;
 use App\Models\Comment;
+use App\Models\SearchKey;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -116,6 +117,11 @@ class BookController extends Controller
             ->orderBy('update_time', 'desc')->paginate($pageRows);
 
         $urlPrevious = $_SERVER['REQUEST_URI'];
+
+        if (!empty($keyword)) {
+            SearchKey::$keyword = $keyword;
+            SearchKey::insertSearch();
+        }
 
         $data = [
             'total' =>  $result->total(),

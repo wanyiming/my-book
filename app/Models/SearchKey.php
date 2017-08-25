@@ -20,11 +20,11 @@ class SearchKey extends Model
 
     const OBJECT_SERVICE = 3;//服务
     const OBJECT_DEMAND = 2;//需求
-    const OBJECT_SHOP = 1;//服务商
+    const OBJECT_SHOP = 1;//书本搜索
     const OBJECT_ARR = [
         self::OBJECT_SERVICE => ['name'=> '服务信息','class' => LABEL_SUCCESS],
         self::OBJECT_DEMAND => ['name' => '需求信息' ,'class' => LABEL_DEFAULT],
-        self::OBJECT_SHOP => ['name' => '服务商' ,'class' => LABEL_PRIMARY],
+        self::OBJECT_SHOP => ['name' => '书籍搜索' ,'class' => LABEL_PRIMARY],
     ];
 
     public $timestamps = false;
@@ -47,7 +47,6 @@ class SearchKey extends Model
         if (!session('search_uuid')) {
             session(['search_uuid'=>Uuid::uuid4()]);
         }
-
         $newData = [
             'keyword' => mb_substr(self::$keyword ?? '', 0, 10),
             'request_link' => $_SERVER['REQUEST_URI'] ?? '',
@@ -55,13 +54,13 @@ class SearchKey extends Model
             'user_id' => get_user_session_info('id') ?? 0,
             'session' =>session('search_uuid',''),
             'object_type' => self::$objectType,
-            'scoure_site' => get_current_site()['area_name'] ?? ''
+            'scoure_site' => request()->getHost()
         ];
-        $resultArr = getTokenizerSCWS(self::$keyword);
+        //$resultArr = getTokenizerSCWS(self::$keyword);
         $newDataArr = [];
-        if ($resultArr == -1) { // 未开启搜索引擎服务
+        //if ($resultArr == -1) { // 未开启搜索引擎服务
             $newData['scws_str'] = self::$keyword ?? '';
-        } else {
+        /*} else {
             if (count($resultArr) <= 1) {
                 $newData['scws_str'] = htmlspecialchars(trim($resultArr[0] ?? ''));
             } else {
@@ -71,7 +70,7 @@ class SearchKey extends Model
                     $newDataArr [] = $newData;
                 }
             }
-        }
+        }*/
         if (empty($newDataArr)) {
             $newDataArr = $newData;
         }
